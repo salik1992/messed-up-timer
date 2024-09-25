@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Messed Up Timer
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+This is a timer that tracks time but mostly in a messed up way. Running faster, slower, lagging, etc.
 
 ## Available Scripts
 
