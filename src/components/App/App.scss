@@ -7,3 +7,15 @@ a {
     color: #ffffff;
     text-decoration: none;
 }
+
+.page {
+    header {
+        padding: 20px;
+        text-align: right;
+        border-bottom: 1px solid #ffffff;
+
+        a {
+            margin-left: 40px;
+        }
+    }
+}

@@ -3,7 +3,7 @@ import { Timer } from './Timer'
 
 const MIN_LAG_TIME = seconds(1)
 const MAX_LAG_TIME = seconds(5)
-const LAG_CHANCE = 0.05
+const LAG_CHANCE = 0.025
 
 const TICK_TIME = 60
 const ESTIMATE_LOOPS = 10

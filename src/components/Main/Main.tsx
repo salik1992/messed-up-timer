@@ -40,7 +40,7 @@ export function Main() {
     const [s, m = '0', h = '0'] = toDuration(timer).split(':').reverse()
 
     return (
-        <div className="main">
+        <div className="page main">
             <header>
                 <Link to="/settings">Settings</Link>
             </header>

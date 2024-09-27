@@ -2,8 +2,8 @@ import { toDuration } from '../utils'
 import { SpeedAdjustingTimer } from './SpeedAdjustingTimer'
 import { Timer } from './Timer'
 
-const SLOW_DOWN_START = 0.5
-const SLOW_DOWN_COEF = 3
+const SLOW_DOWN_START = 0.25
+const SLOW_DOWN_COEF = 5
 
 export class SlowingDownTimer extends SpeedAdjustingTimer implements Timer {
     constructor(time: number) {

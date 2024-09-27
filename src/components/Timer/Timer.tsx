@@ -33,10 +33,11 @@ function getProgressBgStyle(progress: number) {
 export function Timer() {
     const { recentTimers } = useSelector((state: RootState) => state.timers)
     const navigate = useNavigate()
-    const timer = useRef(new TIMERS['nearlyThereAndBack'](recentTimers[0]))
+    const timer = useRef(new TIMERS['lagging'](recentTimers[0]))
     const rafRef = useRef<number>()
     const progress = useRef<HTMLDivElement>(null)
     const duration = useRef<HTMLDivElement>(null)
+    const spinner = useRef<HTMLDivElement>(null)
 
     useFitSize(progress, duration)
 
@@ -49,6 +50,9 @@ export function Timer() {
             progress.current.style.background = getProgressBgStyle(
                 timer.current.remaining / timer.current.time,
             )
+        }
+        if (spinner.current) {
+            spinner.current.style.visibility = timer.current.buffering ? 'visible' : 'hidden'
         }
         if (timer.current.remaining > 0) {
             rafRef.current = window.requestAnimationFrame(tick)
@@ -70,10 +74,24 @@ export function Timer() {
     }, [navigate])
 
     return (
-        <div className="timer">
+        <div className="page timer">
             <div className="progress" ref={progress} />
             <div className="time" ref={duration}>
                 {toDuration(recentTimers[0])}
+            </div>
+            <div className="lds-spinner" ref={spinner}>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
             <Button onClick={stop} type="danger">
                 STOP
