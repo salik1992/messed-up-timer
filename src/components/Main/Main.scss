@@ -1,0 +1,28 @@
+.main {
+    header {
+        padding: 20px;
+        text-align: right;
+        border-bottom: 1px solid #ffffff;
+    }
+
+    main {
+        text-align: center;
+
+        table {
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        th,
+        td {
+            font-size: 2em;
+            width: 33.33%;
+            line-height: 3em;
+        }
+
+        span {
+            cursor: pointer;
+            user-select: none;
+        }
+    }
+}

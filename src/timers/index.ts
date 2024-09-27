@@ -1,0 +1,7 @@
+export type TimerTypes = 'lagging' | 'nearlyThereAndBack' | 'regular' | 'slowingDown' | 'speedingUp'
+export type { Timer } from './Timer'
+export { LaggingTimer } from './Lagging'
+export { NearlyThereAndBackAgainTimer } from './NearlyThereAndBackAgain'
+export { RegularTimer } from './Regular'
+export { SlowingDownTimer } from './SlowingDown'
+export { SpeedingUpTimer } from './SpeedingUp'

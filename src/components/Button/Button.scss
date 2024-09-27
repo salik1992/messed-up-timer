@@ -1,0 +1,21 @@
+.button {
+    display: inline-block;
+    border-radius: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    min-width: 200px;
+    background-color: #999999;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    cursor: pointer;
+
+    &.success {
+        background-color: #00aa00;
+    }
+
+    &.danger {
+        background-color: #ee0000;
+    }
+}
