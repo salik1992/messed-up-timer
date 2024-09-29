@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/messed-up-timer/static/css/main.77073f4a.css",
-    "main.js": "/messed-up-timer/static/js/main.bbc76afe.js",
+    "main.js": "/messed-up-timer/static/js/main.9f4b1aeb.js",
     "index.html": "/messed-up-timer/index.html",
     "main.77073f4a.css.map": "/messed-up-timer/static/css/main.77073f4a.css.map",
-    "main.bbc76afe.js.map": "/messed-up-timer/static/js/main.bbc76afe.js.map"
+    "main.9f4b1aeb.js.map": "/messed-up-timer/static/js/main.9f4b1aeb.js.map"
   },
   "entrypoints": [
     "static/css/main.77073f4a.css",
-    "static/js/main.bbc76afe.js"
+    "static/js/main.9f4b1aeb.js"
   ]
 }
