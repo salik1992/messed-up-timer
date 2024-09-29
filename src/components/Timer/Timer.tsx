@@ -7,6 +7,7 @@ import { TIMERS } from '../../timers'
 import { Button } from '../Button'
 import { useFitSize } from './useFitSize'
 import './Timer.scss'
+import { useSounds } from './useSounds'
 
 function getProgressBgStyle(progress: number) {
     return `radial-gradient(closest-side, #002d62 79%, transparent 80% 100%), conic-gradient(#7799ff ${
@@ -27,6 +28,8 @@ export function Timer() {
     const spinner = useRef<HTMLDivElement>(null)
 
     useFitSize(progress, duration, spinner)
+
+    useSounds({ timer })
 
     const tick = useCallback(() => {
         timer.current.tick()

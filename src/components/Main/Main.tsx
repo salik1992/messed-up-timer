@@ -8,6 +8,7 @@ import { ExpectedRuntime } from '../ExpectedRuntime'
 import { TimerTypePicker } from '../TimerTypePicker'
 import { setTimer as setActiveTimer } from './reducer'
 import './Main.scss'
+import { useSoundsEnabler } from './useSoundEnabler'
 
 const DEFAULT_TIMER = minutes(1)
 
@@ -19,6 +20,7 @@ export function Main() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [timer, setTimer] = useState(recentTimers[0] ?? DEFAULT_TIMER)
+    const enableAudio = useSoundsEnabler()
 
     const adjustTimer = useCallback(
         (diff: number) => {
@@ -37,10 +39,11 @@ export function Main() {
     const addSecond = useCallback(() => adjustTimer(seconds(1)), [adjustTimer])
     const removeSecond = useCallback(() => adjustTimer(seconds(-1)), [adjustTimer])
 
-    const start = useCallback(() => {
+    const start = useCallback(async () => {
+        await enableAudio()
         dispatch(setActiveTimer(timer))
         navigate('/timer')
-    }, [timer, dispatch, navigate])
+    }, [timer, dispatch, navigate, enableAudio])
 
     const [s, m = '0', h = '0'] = toDuration(timer).split(':').reverse()
 
