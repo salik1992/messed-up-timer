@@ -5,6 +5,7 @@ const BUTTONS = 200
 export function useFitSize(
     progress: React.RefObject<HTMLDivElement>,
     duration: React.RefObject<HTMLDivElement>,
+    spinner: React.RefObject<HTMLDivElement>,
 ) {
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight })
 
@@ -25,10 +26,13 @@ export function useFitSize(
             duration.current.style.fontSize = `${fontSize}px`
             duration.current.style.transform = `translateY(-${offset}px)`
         }
-    }, [size, duration, progress])
+        if (spinner.current) {
+            spinner.current.style.transform = `translate(-40px, ${progressSize / 3}px)`
+        }
+    }, [size, duration, progress, spinner])
 
     useEffect(() => {
         window.addEventListener('resize', onResize)
         return () => window.removeEventListener('resize', onResize)
-    }, [])
+    }, [onResize])
 }

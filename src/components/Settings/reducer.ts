@@ -6,6 +6,7 @@ const { load, save } = storePreferences('settings')
 
 const DEFAULTS = {
     timerMode: 'regular',
+    regular: {}, // typings purpose
     slowingDown: {
         coef: 3 as number,
         startAt: 0.5 as number,
@@ -30,6 +31,7 @@ const DEFAULTS = {
 
 const INITIAL_STATE = {
     timerMode: load<TimerTypes>('timerMode', DEFAULTS.timerMode),
+    regular: {}, // typings purpose
     slowingDown: load('slowingDown', DEFAULTS.slowingDown),
     speedingUp: load('speedingUp', DEFAULTS.speedingUp),
     lagging: load('lagging', DEFAULTS.lagging),

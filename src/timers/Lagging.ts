@@ -1,9 +1,7 @@
-import { seconds, toDuration } from '../utils'
+import { toDuration } from '../utils'
 import { Timer } from './Timer'
 
-const MIN_LAG_TIME = seconds(1)
-const MAX_LAG_TIME = seconds(5)
-const LAG_CHANCE = 0.025
+const LAG_CHANCE = 0.0025
 
 const TICK_TIME = 60
 const ESTIMATE_LOOPS = 10
@@ -17,7 +15,22 @@ export class LaggingTimer implements Timer {
 
     public simulation = false
 
-    constructor(public time: number) {
+    private minLagTime: number
+
+    private maxLagTime: number
+
+    private lagChance: number
+
+    private frequency: number
+
+    constructor(
+        public time: number,
+        { frequency, min, max }: { frequency: number; min: number; max: number },
+    ) {
+        this.frequency = frequency
+        this.lagChance = LAG_CHANCE * frequency
+        this.minLagTime = min
+        this.maxLagTime = max
         this._remaining = time
     }
 
@@ -27,8 +40,9 @@ export class LaggingTimer implements Timer {
         this.lastTick = now
         if (this._lagRemaining > 0) {
             this._lagRemaining = Math.max(this._lagRemaining - passed, 0)
-        } else if (Math.random() < LAG_CHANCE) {
-            this._lagRemaining = Math.random() * (MAX_LAG_TIME - MIN_LAG_TIME) + MIN_LAG_TIME
+        } else if (Math.random() < this.lagChance) {
+            this._lagRemaining =
+                Math.random() * (this.maxLagTime - this.minLagTime) + this.minLagTime
         } else {
             this._remaining = Math.max(this._remaining - passed, 0)
         }
@@ -41,7 +55,11 @@ export class LaggingTimer implements Timer {
     get estimate() {
         const results: number[] = []
         for (let i = 0; i < ESTIMATE_LOOPS; i++) {
-            const sim = new LaggingTimer(this.time)
+            const sim = new LaggingTimer(this.time, {
+                frequency: this.frequency,
+                min: this.minLagTime,
+                max: this.maxLagTime,
+            })
             sim.simulation = true
             let passed = 0
             while (sim.remaining > 0) {

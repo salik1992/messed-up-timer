@@ -1,8 +1,4 @@
-import { seconds } from '../utils'
 import { Timer } from './Timer'
-
-const REVERSE_FROM_END = seconds(1)
-const HANG_FOR = seconds(3)
 
 enum Phase {
     DOWN,
@@ -19,7 +15,13 @@ export class NearlyThereAndBackAgainTimer implements Timer {
 
     private _phase = Phase.DOWN
 
-    constructor(public time: number) {
+    private stopAt: number
+
+    private stopFor: number
+
+    constructor(public time: number, { stopAt, stopFor }: { stopAt: number; stopFor: number }) {
+        this.stopAt = stopAt
+        this.stopFor = stopFor
         this._remaining = time
     }
 
@@ -29,13 +31,13 @@ export class NearlyThereAndBackAgainTimer implements Timer {
         this.lastTick = now
         if (this._phase === Phase.DOWN) {
             this._remaining = Math.max(this._remaining - passed, 0)
-            if (this._remaining < REVERSE_FROM_END) {
+            if (this._remaining < this.stopAt) {
                 this._hanging = 0
                 this._phase = Phase.HANGING
             }
         } else if (this._phase === Phase.HANGING) {
             this._hanging += passed
-            if (this._hanging > HANG_FOR) {
+            if (this._hanging > this.stopFor) {
                 this._phase = Phase.UP
             }
         } else {
@@ -51,6 +53,6 @@ export class NearlyThereAndBackAgainTimer implements Timer {
     }
 
     get estimate() {
-        return 'never'
+        return 'never finishes'
     }
 }

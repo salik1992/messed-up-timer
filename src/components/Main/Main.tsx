@@ -4,13 +4,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import type { RootState } from '../../store'
 import { hours, minutes, seconds, toDuration } from '../../utils'
 import { Button } from '../Button'
+import { ExpectedRuntime } from '../ExpectedRuntime'
+import { TimerTypePicker } from '../TimerTypePicker'
 import { setTimer as setActiveTimer } from './reducer'
 import './Main.scss'
 
-const DEFAULT_TIMER = minutes(10)
+const DEFAULT_TIMER = minutes(1)
 
 export function Main() {
     const { recentTimers } = useSelector((state: RootState) => state.timers)
+    const { showTimerPicker, showExpectedRuntime } = useSelector(
+        (state: RootState) => state.settings,
+    )
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [timer, setTimer] = useState(recentTimers[0] ?? DEFAULT_TIMER)
@@ -84,6 +89,8 @@ export function Main() {
                 <Button onClick={start} type="success">
                     Start
                 </Button>
+                {showTimerPicker && <TimerTypePicker />}
+                {showExpectedRuntime && <ExpectedRuntime time={timer} />}
             </main>
         </div>
     )

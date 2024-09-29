@@ -3,26 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../store'
 import { toDuration } from '../../utils'
-import {
-    type Timer as ITimer,
-    type TimerTypes,
-    RegularTimer,
-    SlowingDownTimer,
-    SpeedingUpTimer,
-    LaggingTimer,
-    NearlyThereAndBackAgainTimer,
-} from '../../timers'
+import { TIMERS } from '../../timers'
 import { Button } from '../Button'
 import { useFitSize } from './useFitSize'
 import './Timer.scss'
-
-const TIMERS = {
-    lagging: LaggingTimer,
-    nearlyThereAndBack: NearlyThereAndBackAgainTimer,
-    regular: RegularTimer,
-    slowingDown: SlowingDownTimer,
-    speedingUp: SpeedingUpTimer,
-} as Readonly<Record<TimerTypes, new (time: number) => ITimer>>
 
 function getProgressBgStyle(progress: number) {
     return `radial-gradient(closest-side, #002d62 79%, transparent 80% 100%), conic-gradient(#7799ff ${
@@ -32,14 +16,17 @@ function getProgressBgStyle(progress: number) {
 
 export function Timer() {
     const { recentTimers } = useSelector((state: RootState) => state.timers)
+    const settings = useSelector((state: RootState) => state.settings)
     const navigate = useNavigate()
-    const timer = useRef(new TIMERS['lagging'](recentTimers[0]))
+    const timer = useRef(
+        new TIMERS[settings.timerMode](recentTimers[0], settings[settings.timerMode]),
+    )
     const rafRef = useRef<number>()
     const progress = useRef<HTMLDivElement>(null)
     const duration = useRef<HTMLDivElement>(null)
     const spinner = useRef<HTMLDivElement>(null)
 
-    useFitSize(progress, duration)
+    useFitSize(progress, duration, spinner)
 
     const tick = useCallback(() => {
         timer.current.tick()
