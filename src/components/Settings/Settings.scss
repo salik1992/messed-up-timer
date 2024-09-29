@@ -1,0 +1,38 @@
+.page.settings {
+    main {
+        padding: 0 20px;
+
+        .setting.checkbox {
+            margin: 10px 0;
+
+            label {
+                display: block;
+            }
+
+            input {
+                float: right;
+                font-size: 2em;
+            }
+        }
+
+        .setting.timer {
+            label,
+            input {
+                display: block;
+                width: 100%;
+            }
+
+            label {
+                margin-bottom: 20px;
+            }
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .button {
+            margin-top: 100px;
+        }
+    }
+}
