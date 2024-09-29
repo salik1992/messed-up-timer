@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/messed-up-timer/static/css/main.77073f4a.css",
+    "main.js": "/messed-up-timer/static/js/main.bbc76afe.js",
+    "index.html": "/messed-up-timer/index.html",
+    "main.77073f4a.css.map": "/messed-up-timer/static/css/main.77073f4a.css.map",
+    "main.bbc76afe.js.map": "/messed-up-timer/static/js/main.bbc76afe.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.77073f4a.css",
+    "static/js/main.bbc76afe.js"
+  ]
+}
