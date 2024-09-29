@@ -4,9 +4,10 @@ import type { RootState } from '../../store'
 import { Timer } from '../../timers'
 import { AudioElementContext } from '../AudioElementProvider'
 
-const TICK = '../media/tick.mp3'
-const TOCK = '../media/tock.mp3'
-const ALARM = '../media/alarm.mp3'
+const ROOT = '/messed-up-timer/media'
+const TICK = `${ROOT}/tick.mp3`
+const TOCK = `${ROOT}/tock.mp3`
+const ALARM = `${ROOT}/alarm.mp3`
 
 export function useSounds({ timer }: { timer: React.MutableRefObject<Timer> }) {
     const { enableTicking } = useSelector((state: RootState) => state.settings)

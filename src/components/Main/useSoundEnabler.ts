@@ -1,7 +1,8 @@
 import { useCallback, useContext } from 'react'
 import { AudioElementContext } from '../AudioElementProvider'
 
-const ALARM = '../media/alarm.mp3'
+const ROOT = '/messed-up-timer/media'
+const ALARM = `${ROOT}/alarm.mp3`
 
 export function useSoundsEnabler() {
     const { audio } = useContext(AudioElementContext)

@@ -51,7 +51,6 @@ export function Timer() {
 
     useEffect(() => {
         tick()
-        console.log(timer.current.estimate)
         return () => {
             if (rafRef.current) {
                 cancelAnimationFrame(rafRef.current)
