@@ -140,6 +140,7 @@ dist
 
 # production
 /build
+/packages/rw/build
 
 # misc
 .DS_Store
