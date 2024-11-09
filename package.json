@@ -12,7 +12,7 @@
         "test": "npm run test -w",
         "eject": "npm run eject -w @messed-up-timer/rw",
         "predeploy": "npm run build -w @messed-up-timer/rw",
-        "deploy": "gh-pages -d build"
+        "deploy": "gh-pages -d packages/rw/build"
     },
     "eslintConfig": {
         "extends": [
