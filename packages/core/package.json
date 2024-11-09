@@ -1,18 +1,19 @@
 {
-    "name": "messed-up-timer",
+    "name": "@messed-up-timer/core",
     "version": "0.1.0",
     "private": true,
     "homepage": "https://salik1992.github.io/messed-up-timer",
-    "workspaces": [
-        "packages/*"
-    ],
+    "main": "./src/index.ts",
+    "dependencies": {
+        "@reduxjs/toolkit": "^2.2.7",
+        "@testing-library/jest-dom": "^5.17.0",
+        "@testing-library/user-event": "^13.5.0",
+        "@types/jest": "^27.5.2",
+        "@types/node": "^16.18.110",
+        "typescript": "^4.9.5"
+    },
     "scripts": {
-        "start": "npm start -w @messed-up-timer/rw",
-        "build": "npm run build -w @messed-up-timer/rw",
-        "test": "npm run test -w",
-        "eject": "npm run eject -w @messed-up-timer/rw",
-        "predeploy": "npm run build -w @messed-up-timer/rw",
-        "deploy": "gh-pages -d build"
+        "test": "react-scripts test"
     },
     "eslintConfig": {
         "extends": [
@@ -31,8 +32,5 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    },
-    "devDependencies": {
-        "gh-pages": "^6.1.1"
     }
 }
